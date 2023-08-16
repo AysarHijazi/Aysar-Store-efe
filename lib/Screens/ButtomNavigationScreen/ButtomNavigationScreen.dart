@@ -29,12 +29,12 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
       // bodyScreens.elementAt(_selectedIndex),
       Builder(builder: (BuildContext context) {
         return _selectedIndex == 0
-            ? const HomeScreen()
+            ? HomeScreen()
             : _selectedIndex == 1
-            ? const TrackScreen()
+            ?  TrackScreen()
             : _selectedIndex == 2
-            ? const ProfileScreen()
-            : const ProfileScreen();
+            ?  ProfileScreen()
+            :  ProfileScreen();
       },),
 
       bottomNavigationBar: BottomNavigationBar(

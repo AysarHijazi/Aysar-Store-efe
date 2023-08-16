@@ -1,6 +1,7 @@
-import 'package:aysaarprojectefe/Screens/authentication/WelcomeScreen.dart';
 import 'package:flutter/material.dart';
 
+import '../ButtomNavigationScreen/ButtomNavigationScreen.dart';
+import '../authentication/WelcomeScreen.dart';
 import 'onboarding_contents.dart';
 import 'size_config.dart';
 
@@ -32,7 +33,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.all(
           Radius.circular(50),
         ),
@@ -121,7 +122,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => WelcomeScreen()), // استبدل "LoginScreen()" بالصفحة الفعلية لتسجيل الدخول
+                          MaterialPageRoute(
+                            builder: (context) => WelcomeScreen(), // استبدل "HomeScreen()" بالصفحة الفعلية التي تريد نقل المستخدم إليها
+                          ),
                         );
                       },
                       child: const Text("START"),
@@ -131,12 +134,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           borderRadius: BorderRadius.circular(50),
                         ),
                         padding: (width <= 550)
-                            ? const EdgeInsets.symmetric(horizontal: 100, vertical: 20)
-                            : EdgeInsets.symmetric(horizontal: width * 0.2, vertical: 25),
-                        textStyle: TextStyle(fontSize: (width <= 550) ? 13 : 17),
+                            ? const EdgeInsets.symmetric(
+                            horizontal: 100, vertical: 20)
+                            : EdgeInsets.symmetric(
+                            horizontal: width * 0.2,
+                            vertical: 25),
+                        textStyle: TextStyle(
+                            fontSize: (width <= 550) ? 13 : 17),
                       ),
                     ),
-
                   )
                       : Padding(
                     padding: const EdgeInsets.all(30),
@@ -162,7 +168,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ElevatedButton(
                           onPressed: () {
                             _controller.nextPage(
-                              duration: const Duration(milliseconds: 200),
+                              duration:
+                              const Duration(milliseconds: 200),
                               curve: Curves.easeIn,
                             );
                           },
