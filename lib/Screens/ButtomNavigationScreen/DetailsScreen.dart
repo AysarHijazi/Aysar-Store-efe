@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'cart_item.dart';
 
@@ -16,6 +17,8 @@ class CatDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(name),
@@ -55,11 +58,25 @@ class CatDetailsScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                // إضافة القط إلى السلة
-                final cartItem = CartItem(name: name, price: price);
-                // قم بتحديث حالة المحلية لتضمين القط في السلة
-                // يمكنك استخدام Provider أو InheritedWidget لإدارة الحالة
+              onPressed: () async {
+                final user = _auth.currentUser;
+
+                if (user != null) {
+                  final cartItem = CartItem(name: name, price: price);
+                  await FirebaseFirestore.instance
+                      .collection("users-cart-items")
+                      .doc(user.email)
+                      .collection("items")
+                      .add(cartItem.toMap());
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Item added to cart')),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('You need to log in first')),
+                  );
+                }
               },
               child: Text('Add to Cart'),
             ),

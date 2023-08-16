@@ -1,42 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'home_screen.dart';
-import 'profile_screen.dart';
-import 'track_screen.dart';
+import 'Add_screen.dart';
+import 'Cart-Screen.dart';
+import 'Search-Screen.dart';
 
-// class BottomNavigationScreen extends StatefulWidget {
-//   const BottomNavigationScreen({Key? key}) : super(key: key);
+import 'ProfileScreen.dart'; // استبدل ProfileScreen بصفحة الملف الشخصي
+
 class BottomNavigationScreen extends StatefulWidget {
-  BottomNavigationScreen({super.key});
   @override
-  State<BottomNavigationScreen> createState() => _BottomNavigationScreenState();
+  _BottomNavigationScreenState createState() => _BottomNavigationScreenState();
 }
-
 
 class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   int _selectedIndex = 0;
-  _onItemTapped(int index) {
+
+  void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
-    print('$_selectedIndex');
   }
+
+  List<Widget> _pages = [
+    HomeScreen(),
+    TrackScreen(),
+    CartPage(),
+    ProfileScreen(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-      // bodyScreens.elementAt(_selectedIndex),
-      Builder(builder: (BuildContext context) {
-        return _selectedIndex == 0
-            ? HomeScreen()
-            : _selectedIndex == 1
-            ?  TrackScreen()
-            : _selectedIndex == 2
-            ?  ProfileScreen()
-            :  ProfileScreen();
-      },),
-
+      body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
@@ -47,61 +42,44 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             icon: SvgPicture.asset(
               'assets/images/home.svg',
               colorFilter: ColorFilter.mode(
-                  _selectedIndex == 0 ? const Color(0xff40e0d0) : const Color(0xff818181),
-                  BlendMode.srcIn),
+                _selectedIndex == 0 ? const Color(0xff40e0d0) : const Color(0xff818181),
+                BlendMode.srcIn,
+              ),
             ),
             label: '',
           ),
-           BottomNavigationBarItem(
-               icon: Row(
-                 children: [
-                   SvgPicture.asset(
-                     'assets/images/heart.svg',
-                     colorFilter: ColorFilter.mode(
-                         _selectedIndex == 1
-                             ? const Color(0xff40e0d0)
-                             : const Color(0xff818181),
-                         BlendMode.srcIn),
-                   ),
-                 ],
-               ),
-                label: ''),
-           BottomNavigationBarItem(
-              icon: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  SvgPicture.asset(
-                    'assets/images/location.svg',
-                     colorFilter: ColorFilter.mode(
-                         _selectedIndex == 2
-                            ? const Color(0xff40e0d0)
-                            : const Color(0xff818181),
-                         BlendMode.srcIn),
-                  ),
-                 ],
-               ),
-               label: ''),
           BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                'assets/images/profile.svg',
-                colorFilter: ColorFilter.mode(
-                    _selectedIndex == 3 ? const Color(0xff23AA49) : const Color(0xff818181),
-                    BlendMode.srcIn),
+            icon: SvgPicture.asset(
+              'assets/images/heart.svg',
+              colorFilter: ColorFilter.mode(
+                _selectedIndex == 1 ? const Color(0xff40e0d0) : const Color(0xff818181),
+                BlendMode.srcIn,
               ),
-              label: ''),
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              'assets/images/location.svg',
+              colorFilter: ColorFilter.mode(
+                _selectedIndex == 2 ? const Color(0xff40e0d0) : const Color(0xff818181),
+                BlendMode.srcIn,
+              ),
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              'assets/images/profile.svg',
+              colorFilter: ColorFilter.mode(
+                _selectedIndex == 3 ? const Color(0xff23AA49) : const Color(0xff818181),
+                BlendMode.srcIn,
+              ),
+            ),
+            label: '',
+          ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xff40e0d0),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-        onPressed: () {},
-        child: SvgPicture.asset(
-          'assets/images/shopping-basket.svg',
-          fit: BoxFit.scaleDown,
-        ),
-      ),
-      floatingActionButtonLocation:
-      FloatingActionButtonLocation.miniCenterDocked,
     );
   }
 }

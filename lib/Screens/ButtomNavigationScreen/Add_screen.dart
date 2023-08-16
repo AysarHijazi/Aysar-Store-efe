@@ -15,10 +15,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Cat App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      // title: 'Cat App',
+      // theme: ThemeData(
+      //   primarySwatch: Colors.blue,
+      // ),
       home: HomeScreen(),
     );
   }
@@ -82,16 +82,16 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Cat App'),
-      ),
+      // appBar: AppBar(
+      //   title: Text('Cat App'),
+      // ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             TextField(
               controller: _nameController,
-              decoration: InputDecoration(labelText: 'Cat Name'),
+              decoration: InputDecoration(labelText: 'Name'),
             ),
             TextField(
               controller: _priceController,

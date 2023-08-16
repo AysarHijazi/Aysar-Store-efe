@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'CatDetailsScreen.dart';
+import 'DetailsScreen.dart';
 
 class TrackScreen extends StatelessWidget {
   @override
@@ -36,7 +36,7 @@ class _CatListState extends State<CatList> {
           child: TextField(
             controller: _searchController,
             decoration: InputDecoration(
-              labelText: 'Search for cats',
+              labelText: 'Search for anything you want',
               suffixIcon: IconButton(
                 icon: Icon(Icons.clear),
                 onPressed: () {
@@ -78,7 +78,7 @@ class _CatListState extends State<CatList> {
 
               if (catDocs.isEmpty) {
                 return Center(
-                  child: Text('No cats available.'),
+                  child: Text('Not available.'),
                 );
               }
 
