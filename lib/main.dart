@@ -27,8 +27,8 @@ class MyApp extends StatelessWidget {
 // WelcomeScreen(),
       // Login(),
 
-      SplachScreen(),
-      // BottomNavigationScreen(),
+      // SplachScreen(),
+      BottomNavigationScreen(),
     );
   }
 }

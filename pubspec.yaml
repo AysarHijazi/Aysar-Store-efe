@@ -32,6 +32,8 @@ dependencies:
     sdk: flutter
   animated_text_kit: ^4.2.1
   google_fonts: ^2.3.3  # تحديث الإصدار إلى أحدث إصدار
+  date_time_picker: ^2.1.0
+  photo_view: ^0.14.0
 
 
 
